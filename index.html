@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="fo" >
+        <form name="submit-to-google-sheet">
+        <input  name="name" type="text" value="hassura">
+        <input type="textr" name="re" value="" id="hassu">
+       
+        <input name="email" type="text">
+        <button type="submit"></button>
+       
+    <ul class="quiz">
+    <li>
+        <h4>How many letters are there in "JS"?</h4>
+        <ul class="choices">
+            <li>
+                <label
+                    ><input type="radio" name="question0" value="A" /><span
+                        >2</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question0" value="B" /><span
+                        >1</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question0" value="C" /><span
+                        >3</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question0" value="D" /><span
+                        >4</span
+                    ></label
+                >
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4>How many letters are there in "BMX"?</h4>
+        <ul class="choices">
+            <li>
+                <label
+                    ><input type="radio" name="question1" value="A" /><span
+                        >2</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question1" value="B" /><span
+                        >1</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question1" value="C" /><span
+                        >3</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question1" value="D" /><span
+                        >4</span
+                    ></label
+                >
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4>How many letters are there in "A"?</h4>
+        <ul class="choices">
+            <li>
+                <label
+                    ><input type="radio" name="question2" value="A" /><span
+                        >2</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question2" value="B" /><span
+                        >1</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question2" value="C" /><span
+                        >3</span
+                    ></label
+                >
+            </li>
+            <li>
+                <label
+                    ><input type="radio" name="question2" value="D" /><span
+                        >4</span
+                    ></label
+                >
+            </li>
+        </ul>
+    </li>
+</ul>
+<button class="view-results" onclick="returnScore()">View Results</button>
+<span id="myresults" class="my-results" name="result"></span>
+ </form>
+    </div>
+<!-- <script>var answers = ["A", "C", "B"],
+    tot = answers.length;
+function getCheckedValue(radioName) {
+    var radios = document.getElementsByName(radioName);
+    for (var y = 0; y < radios.length; y++)
+        if (radios[y].checked) return radios[y].value;
+}
+function getScore() {
+    var score = 0;
+    for (var i = 0; i < tot; i++)
+        if (getCheckedValue("question" + i) === answers[i]) score += 1;
+    return score;
+}
+function returnScore() {
+    var a =document.getElementById("hassu");
+    a.setAttribute("value",getScore());
+    if (getScore() > 2) {
+        console.log("Bravo");
+    }
+}
+
+</script>
+
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx76ag2ASHanGCa6LurQyVJQG_BSPnk4e0iCwHHy8rRa_IdXL2euNY9ohDclt3xSl8/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script> -->
+</body>
+</html>

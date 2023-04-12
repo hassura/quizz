@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: aquamarine;
+      }
+      .quiz-container {
+        background-color: white;
+        width: 50vw;
+        height:max-content;
+        border-radius: 10px;
+      }
+      .quiz-container .quiz-header {
+        padding: 2em;
+        position: relative;
+      }
+      .quiz-header h2 {
+        padding-left: 20%;
+      }
+      .quiz-container ul li {
+        list-style-type: none;
+        padding: 4px;
+      }
+      ul {
+        margin-top: 5px;
+      }
+      ul li label {
+        cursor: pointer;
+      }
+      
+      button{
+        position: absolute;
+        
+        background-color: blue;
+        color: white;
+        padding: 8px;
+        border-radius: 3px;
+        border: white;
+      }
+      button:hover {
+        background-color: darkblue;
+      }
+      @media (max-width: 500px) {
+        .quiz-container {
+          height: 40vh;
+          width: 90vw;
+        }
+      }
+      
+      .complete {
+        font-size: 1em;
+        color: rgb(25, 54, 218);
+        margin-top: 30px;
+      }
+    </style>
+</head>
+<body style="margin-top:0px ;">
+     <form name="submit-to-google-sheet">
+      <input  type="text" name="result" value="" id="hassu" style="display: none;"/>
+    <div class="quiz-container" id="quiz">
+        
+      <div class="quiz-header">
+        <h2 class="question"><img src="q10.jpeg" alt=""></h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer">
+            <label for="a" id="a_label">2</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="b" class="answer">
+            <label for="b" id="b_label">18</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="c" class="answer">
+            <label for="c" id="c_label">1</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="d" class="answer">
+            <label for="d" id="d_label">4</label>
+          </li>
+        </ul>
+        <button class="submit">Submit</button>
+      </div>
+    </div>
+    </form>
+    <script>
+      questions = [
+        {
+          question: '<p style="margin-left:-20px">find the result of the code</p><img src="q10.jpeg" width="400px" >',
+          a: "0 5",
+          b: "0 -10",
+          c: "5 0",
+          d: "compilation error",
+          correct: "c",
+        },
+        {
+          question: '<p style="margin-left:-20px">which line/lines has to comment to get the code compiled</p><br><img src="q4.jpg" width="400px" >',
+          a: "2",
+          b: "3",
+          c: "2,3",
+          d: "1,2",
+          correct: "c",
+        },
+        {
+          question:  '<p style="margin-left:-20px">select correct option</p><br><img src="q3.jpg" width="400px" >',
+          a: "Both are false",
+          b: "1 is true and 2 is false",
+          c: "1 is false and 2 is true",
+          d: "Both are true",
+          correct: "a",
+        },
+        {
+          question: '<img src="sw1.jpeg" width="400px" >',
+          a: "friend",
+          b: "enemy",
+          c: "mr cool",
+          d: "cool guy",
+          correct: "d",
+        },
+        {
+          question: "how are more dangerous... ?",
+          a: "friends",
+          b: "enemys",
+          c: "mr cool",
+          d: "uday",
+          correct: "a",
+        },
+      ];
+      let current_data = 0;
+      let score = 0;
+      var a = document.getElementById("hassu");
+      let body = document.querySelector("body");
+      let header = document.querySelector(".quiz-header");
+      let question = document.querySelector(".question");
+      let answerELe = document.querySelectorAll(".answer");
+      let a_option = document.getElementById("a_label");
+      let b_option = document.getElementById("b_label");
+      let c_option = document.getElementById("c_label");
+      let d_option = document.getElementById("d_label");
+      let submit = document.querySelector("button");
+      load_Quiz();
+      function load_Quiz() {
+        current_question = questions[current_data];
+
+        question.innerHTML = current_question.question;
+        a_option.innerText = current_question.a;
+        b_option.innerText = current_question.b;
+        c_option.innerText = current_question.c;
+        d_option.innerText = current_question.d;
+      }
+
+      function get_selected() {
+        let answer;
+        answerELe.forEach((Ele) => {
+          if (Ele.checked) {
+            answer = Ele.id;
+          }
+        });
+        return answer;
+      }
+      function disSelect() {
+        answerELe.forEach((ele) => (ele.checked = false));
+      }
+      submit.addEventListener("click", () => {
+        const answer = get_selected();
+        console.log(answer);
+        disSelect();
+        if (answer === questions[current_data].correct) {
+          score++;
+          
+        }
+        current_data++;
+        if (current_data < questions.length) {
+          load_Quiz();
+        } else {
+        
+          
+           a.setAttribute("value", score);
+              body.innerHTML='<a href="index3.html"><center><button class="sub" style="width:100px;height:50px;margin-top:-100px;margin-left:-10px">Submit</button></center></a>';
+          
+          
+          
+        
+          
+        }
+       
+        
+      });
+
+    </script>
+
+      <!-- questions = [
+        {
+          question: "who is uday ?",
+          a: "friend",
+          b: "enemy",
+          c: "mr cool",
+          d: "cool guy",
+          correct: "c",
+        },
+        {
+          question: "is uday fake ?",
+          a: "yes",
+          b: "no",
+          c: "slightly",
+          d: "100%",
+          correct: "a",
+        },
+        {
+          question: "what is the age of kiran ?",
+          a: "2",
+          b: "18",
+          c: "1",
+          d: "4",
+          correct: "b",
+        },
+        {
+          question: "who is mr cool ?",
+          a: "friend",
+          b: "enemy",
+          c: "mr cool",
+          d: "cool guy",
+          correct: "d",
+        },
+        {
+          question: "how are more dangerous... ?",
+          a: "friends",
+          b: "enemys",
+          c: "mr cool",
+          d: "uday",
+          correct: "a",
+        },
+      ];
+      let current_data = 0;
+      let score = 0;
+      let body = document.querySelector("body");
+      let header = document.querySelector(".quiz-header");
+      let question = document.querySelector(".question");
+      let answerELe = document.querySelectorAll(".answer");
+      let a_option = document.getElementById("a_label");
+      let b_option = document.getElementById("b_label");
+      let c_option = document.getElementById("c_label");
+      let d_option = document.getElementById("d_label");
+      let submit = document.querySelector("button");
+      load_Quiz();
+      function load_Quiz() {
+        current_question = questions[current_data];
+
+        question.innerHTML = current_question.question;
+        a_option.innerText = current_question.a;
+        b_option.innerText = current_question.b;
+        c_option.innerText = current_question.c;
+        d_option.innerText = current_question.d;
+      }
+
+      function get_selected() {
+        let answer;
+        answerELe.forEach((Ele) => {
+          if (Ele.checked) {
+            answer = Ele.id;
+          }
+        });
+        return answer;
+      }
+      function disSelect() {
+        answerELe.forEach((ele) => (ele.checked = false));
+      }
+      submit.addEventListener("click", () => {
+        const answer = get_selected();
+        console.log(answer);
+        disSelect();
+        if (answer === questions[current_data].correct) {
+          score++;
+        }
+        current_data++;
+        if (current_data < questions.length) {
+          load_Quiz();
+        } else {
+          body.style.backgroundColor = "green";
+          header.classList.add("complete");
+          header.innerHTML = `<h2>your score is <strong>${score}/${questions.length}</strong></h2>`;
+        }
+      }); -->
+    
+     <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbywqIe8qaiOUgxjmlMaemFmBB-bGrHETk1fpViAZkacFVDrezduzm-n78GF-dh_GEH6/exec";
+      const form = document.forms["submit-to-google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+</body>
+</html>
